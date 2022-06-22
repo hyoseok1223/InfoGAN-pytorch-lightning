@@ -1,0 +1,8 @@
+batch_size: 128
+
+max_epoch: 50 # need more than 200 epochs for training generator
+
+n_critic: 1 # for training more k steps about Discriminator
+n_noise: 62
+n_c_discrete: 10
+n_c_continuous: 2
