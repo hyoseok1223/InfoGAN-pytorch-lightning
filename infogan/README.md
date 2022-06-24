@@ -69,6 +69,6 @@ You can manipulate latent code ( one discrete code -label, two continuous codes 
 
 
 ## References
-https://arxiv.org/abs/1606.03657
-https://github.com/Natsu6767/InfoGAN-PyTorch
-https://github.com/Yangyangii/GAN-Tutorial/blob/master/MNIST/infoGAN.ipynb
+https://arxiv.org/abs/1606.03657    
+https://github.com/Natsu6767/InfoGAN-PyTorch    
+https://github.com/Yangyangii/GAN-Tutorial/blob/master/MNIST/infoGAN.ipynb    
