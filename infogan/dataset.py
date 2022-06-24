@@ -34,5 +34,3 @@ class MNISTDataModule(pl.LightningDataModule):
     def test_dataloader(self):
         return torch.utils.data.DataLoader(self.test_data, batch_size=self.batch_size, shuffle=False, drop_last=True ,num_workers=0)
 
-
-# batch_size 128 config설정

@@ -11,20 +11,20 @@ def to_onehot(x, num_classes=10):
         x = x.cpu()
         c = torch.LongTensor(x.size(0), num_classes)
         c.zero_()
-        x = x.unsqueeze(1) # 이게 필요함.
+        x = x.unsqueeze(1) 
         c.scatter_(1, x, 1) # dim, index, src value
     return c
 
-def sample_noise(batch_size, n_noise, n_c_discrete, n_c_continuous, label=None, supervised=False):
-    z = torch.randn(batch_size, n_noise)#.to(DEVICE)
+def sample_noise(batch_size, n_noise, n_c_discrete, n_c_continuous,device, label=None, supervised=False):
+    z = torch.randn(batch_size, n_noise).to(device)
     
     if supervised:
-        c_discrete = to_onehot(label)#.to(DEVICE) # (B,10)
+        c_discrete = to_onehot(label).to(device) # (B,10)
     else:
-        c_discrete = to_onehot(torch.LongTensor(batch_size, 1).random_(0, n_c_discrete))#.to(DEVICE) # (B,10)
+        c_discrete = to_onehot(torch.LongTensor(batch_size, 1).random_(0, n_c_discrete)).to(device) # (B,10)
    
     # uniform ( Rotation & Width)
-    c_continuous = torch.zeros(batch_size, n_c_continuous).uniform_(-1, 1)#.to(DEVICE) # (B,2)
+    c_continuous = torch.zeros(batch_size, n_c_continuous).uniform_(-1, 1).to(device) # (B,2)
     
     c = torch.cat((c_discrete.float(), c_continuous), 1)
     return z, c
@@ -34,7 +34,6 @@ def get_sample_image(model,args):
         save sample 100 images
     """
     images = []
-    # 각 code정보에 따라서 이미지들이 생성될 수 있도록 짜여진 함수
 
     # continuous code
     for cc_type in range(2): # 2 continous code
