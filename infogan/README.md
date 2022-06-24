@@ -58,11 +58,17 @@ python test.py
 <tr>
 <td><img src = 'results/results_by_epoch/epoch1.png' height = '300'>
 <td><img src = 'results/results_by_epoch/epoch20.png' height = '300'>
-<td><img src = 'results/results_by_epoch/epoch50png' height = '300'>
+<td><img src = 'results/results_by_epoch/epoch50.png' height = '300'>
 </tr>
 </table>
 
 
 ### Demo ( Gradio )
 You can manipulate latent code ( one discrete code -label, two continuous codes - rotation & width )
-<p align="center"><img src='results/demo/demo.gif' width="300" height="300"/></p>
+<p align="center"><img src='results/demo/demo.gif'/></p>
+
+
+## References
+https://arxiv.org/abs/1606.03657
+https://github.com/Natsu6767/InfoGAN-PyTorch
+https://github.com/Yangyangii/GAN-Tutorial/blob/master/MNIST/infoGAN.ipynb
