@@ -44,9 +44,10 @@ python test.py
 ```
 
 ## Results
+<div aligne='center'>
 ### Training Loss Curve
-![W B Chart 2022  6  24  오후 4_08_45](https://user-images.githubusercontent.com/90104418/175482389-41d78c34-680e-4872-a305-be3355edf2e0.png)
-
+<img src = 'https://user-images.githubusercontent.com/90104418/175482389-41d78c34-680e-4872-a305-be3355edf2e0.png' height = '300'>
+</div>
 ### Results by epoch
 
 <table align='center'>
