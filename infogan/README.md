@@ -44,10 +44,13 @@ python test.py
 ```
 
 ## Results
-<div aligne='center'>
-### Training Loss Curve
+<div align=center>
+  
+### Training Loss Curve  <br>
 <img src = 'https://user-images.githubusercontent.com/90104418/175482389-41d78c34-680e-4872-a305-be3355edf2e0.png' height = '300'>
-</div>
+
+
+  <br>  <br>  <br>
 ### Results by epoch
 
 <table align='center'>
@@ -62,9 +65,10 @@ python test.py
 <td><img src = 'results/results_by_epoch/epoch50.png' height = '300'>
 </tr>
 </table>
+</div>
 
-
-### Demo ( Gradio )
+  <br>  <br>  <br>
+## Demo ( Gradio )
 You can manipulate latent code ( one discrete code -label, two continuous codes - rotation & width )
 <p align="center"><img src='results/demo/demo.gif'/></p>
 
