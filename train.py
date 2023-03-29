@@ -39,26 +39,19 @@ class GAN(pl.LightningModule):
   def generator_step(self, x, y):
     D_labels = torch.ones([args.batch_size, 1]).to(args.DEVICE) 
 
-    # noise z와 latent code c를 설정한 파라미터에 맞게 생성
     z, c = sample_noise(x.shape[0], args.n_noise, args.n_c_discrete, args.n_c_continuous, device = args.DEVICE,label=y, supervised=True)
 
-    # discrete한 부분들에 대해서 1을 가지는 것을(max) label로 정의
     c_discrete_label = torch.max(c[:, :-2], 1)[1].view(-1, 1) 
 
-    # G를 통과한 fake image가 discriminator를 통과 해 fake인지 아닌지와 feature map을 뽑아둔다.
     z_outputs, features = self.D(self.G(z, c)) # (B,1), (B,10), (B,4)
 
-    # feature map의 경우 Q네트워크를 추가로 통과해 우리가 원하는 c'정보를 추출한다.
     c_discrete_out, cc_mu, cc_var = self.Q(features)
 
-    # 기존의 Generator loss와 동일
-    G_loss = self.bce_loss(z_outputs, D_labels) # generated image와 진짜 이미지 사이의 loss measure 이게 낮다는 것 = 비슷하다는 것, 가짜를 진짜로 착각 = good
+    G_loss = self.bce_loss(z_outputs, D_labels) 
 
-    # 여기가 핵심 Q 네트워크를 통해서 나온 c'정보를 measure해줘야함
     Q_loss_discrete = self.ce_loss(c_discrete_out, c_discrete_label.view(-1))
     Q_loss_continuous = -torch.mean(torch.sum(log_gaussian(c[:, -2:], cc_mu, cc_var), 1)) # N(x | mu,var) -> (B, 2) -> (,1)
 
-    # 상호 정보량을 높이는 방향으로 학습하기 위한 loss
     mutual_info_loss = Q_loss_discrete + Q_loss_continuous*0.1
     GnQ_loss = G_loss + mutual_info_loss
 
